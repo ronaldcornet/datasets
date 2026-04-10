@@ -1,0 +1,42 @@
+id: https://example.org/person-schema
+name: person_schema
+description: A simple LinkML schema for a person
+prefixes:
+  ex: https://example.org/
+  linkml: https://w3id.org/linkml/
+default_prefix: ex
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+  Person:
+    description: A person with basic identifying attributes
+    slots:
+      - identifier
+      - first_name
+      - last_name
+      - date_of_birth
+    slot_usage:
+      identifier:
+        required: true
+        identifier: true
+
+slots:
+  identifier:
+    description: Unique identifier for the person
+    range: string
+
+  first_name:
+    description: The person's first (given) name
+    range: string
+
+  last_name:
+    description: The person's last (family) name
+    range: string
+
+  date_of_birth:
+    description: The person's date of birth
+    range: date
+    required: false
