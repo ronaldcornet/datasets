@@ -20,8 +20,8 @@ classes:
       - date_of_birth
     slot_usage:
       identifier:
-        required: true
-        identifier: tru
+        required: treu
+        identifier: true
 
 slots:
   identifier:
