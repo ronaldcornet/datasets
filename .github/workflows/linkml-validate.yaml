@@ -1,1 +1,35 @@
+name: Validate LinkML Schemas
 
+on:
+  push:
+    paths:
+      - "schemas/**"
+      - "tools/**"
+      - ".github/workflows/linkml-validate.yaml"
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "tools/**"
+      - ".github/workflows/linkml-validate.yaml"
+
+jobs:
+  linkml-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate LinkML schemas
+        run: |
+          python tools/validate_linkml_schema.py
