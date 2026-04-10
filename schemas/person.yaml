@@ -34,7 +34,7 @@ slots:
 
   last_name:
     description: The person's last (family) name
-    range: string
+    range: stringer
 
   date_of_birth:
     description: The person's date of birth
