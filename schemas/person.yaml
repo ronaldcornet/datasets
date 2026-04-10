@@ -21,7 +21,7 @@ classes:
     slot_usage:
       identifier:
         required: true
-        identifier: true
+        identifier: tru
 
 slots:
   identifier:
