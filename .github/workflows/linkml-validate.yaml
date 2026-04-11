@@ -5,11 +5,13 @@ on:
     paths:
       - "schemas/**"
       - "tools/**"
+      - "data/**"
       - ".github/workflows/linkml-validate.yaml"
   pull_request:
     paths:
       - "schemas/**"
       - "tools/**"
+      - "data/**"
       - ".github/workflows/linkml-validate.yaml"
 
 jobs:
