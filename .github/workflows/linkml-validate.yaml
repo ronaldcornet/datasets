@@ -33,3 +33,19 @@ jobs:
       - name: Validate LinkML schemas
         run: |
           python tools/validate_linkml_schema.py
+
+      - name: Validate instances against schemas
+        run: |
+           # Example: person instances against schemas/person.yaml
+           if [ -d "data/person" ]; then
+             for f in data/person/*.yaml; do
+               [ -e "$f" ] || continue
+               echo "Validating $f against Person class..."
+               linkml-validate \
+                 --schema schemas/person.yaml \
+                 --target-class Person \
+                 "$f"
+             done
+           else
+             echo "No data/person directory, skipping instance validation."
+           fi
