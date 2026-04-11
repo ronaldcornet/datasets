@@ -1,0 +1,6 @@
+# Assuming your schema's main class is Person and
+# you model a single Person instance
+identifier: "P001"
+first_name: "Ada"
+last_name: "Lovelace"
+date_of_birth: 1815-12-10
