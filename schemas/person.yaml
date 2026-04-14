@@ -4,6 +4,11 @@ description: A simple LinkML schema for a person
 prefixes:
   ex: https://example.org/
   linkml: https://w3id.org/linkml/
+  schema:  https://schema.org/
+  fhir:    http://hl7.org/fhir/
+  sct:     http://snomed.info/id/
+  erdera:  https://w3id.org/erdera/
+
 default_prefix: ex
 default_range: string
 
@@ -13,11 +18,15 @@ imports:
 classes:
   Person:
     description: A person with basic identifying attributes
+    class_uri: fhir:Patient
+    exact_mappings:
+      - schema:Person 
     slots:
       - identifier
       - first_name
       - last_name
       - date_of_birth
+      - gender
     slot_usage:
       identifier:
         required: true
@@ -27,16 +36,59 @@ slots:
   identifier:
     description: Unique identifier for the person
     range: string
+    slot_uri: fhir:Patient.id
+    exact_mappings:
+      - schema:identifier
 
   first_name:
     description: The person's first (given) name
     range: string
+    slot_uri: schema:givenName
+    exact_mappings:
+      - fhir:HumanName.given
 
   last_name:
     description: The person's last (family) name
     range: string
+    slot_uri: schema:familyName
+    exact_mappings:
+      - fhir:HumanName.family
 
   date_of_birth:
     description: The person's date of birth
     range: date
     required: false
+    slot_uri: schema:birthDate        # Treat schema:birthDate as the main property
+    exact_mappings:
+      - fhir:Patient.birthDate        # Also corresponds to FHIR Patient.birthDate
+
+  gender:
+    description: Administrative gender of the patient
+    range: erdera:AdministrativeGender
+    slot_uri: fhir:Patient.gender
+    exact_mappings:
+      - schema:gender
+
+enums:
+  erdera:AdministrativeGender:
+    description: Administrative gender values, aligned with HL7/FHIR
+    enum_uri: fhir:AdministrativeGender   # URI of the value set itself
+    permissible_values:
+      male:
+        text: Male
+        description: Male gender
+        # Could be a FHIR code URI or SNOMED concept
+        meaning: sct:248153007            # 'Male' (finding) in SNOMED CT, as an example
+      female:
+        text: Female
+        description: Female gender
+        meaning: sct:248152002            # 'Female' (finding)
+      other:
+        text: Other
+        description: Other gender
+        meaning: fhir:administrative-gender#other
+      unknown:
+        text: Unknown
+        description: Gender is unknown
+        meaning: fhir:administrative-gender#unknown
+      
