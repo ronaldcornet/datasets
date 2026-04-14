@@ -75,20 +75,20 @@ enums:
     enum_uri: fhir:AdministrativeGender   # URI of the value set itself
     permissible_values:
       male:
-        text: Male
+        text: male
         description: Male gender
         # Could be a FHIR code URI or SNOMED concept
         meaning: sct:248153007            # 'Male' (finding) in SNOMED CT, as an example
       female:
-        text: Female
+        text: female
         description: Female gender
         meaning: sct:248152002            # 'Female' (finding)
       other:
-        text: Other
+        text: other
         description: Other gender
         meaning: fhir:administrative-gender#other
       unknown:
-        text: Unknown
+        text: unknown
         description: Gender is unknown
         meaning: fhir:administrative-gender#unknown
       
