@@ -34,7 +34,7 @@ classes:
 
 slots:
   identifier:
-    description: Unique identifier for the person
+    description: Unique identifier for the person / patient
     range: string
     slot_uri: fhir:Patient.id
     exact_mappings:
