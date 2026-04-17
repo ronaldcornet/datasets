@@ -48,7 +48,7 @@ jobs:
           mkdir -p web
           # Use whatever is appropriate for your CLI; one of these will work depending on version:
           # gen-json-schema schemas/person.yaml > web/person.schema.json
-          gen-json-schema schemas/person.yaml --target_class=Person --top_class Person > web/person.schema.json
+          gen-json-schema schemas/person.yaml --top_class Person > web/person.schema.json
           # or:
           # linkml generate json-schema schemas/person.yaml > web/person.schema.json
 
