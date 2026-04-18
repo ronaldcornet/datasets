@@ -42,6 +42,7 @@ slots:
 
   first_name:
     description: The person's first (given) name
+    multivalued: true
     range: string
     slot_uri: schema:givenName
     exact_mappings:
