@@ -27,6 +27,7 @@ classes:
       - last_name
       - date_of_birth
       - gender
+      - diagnosis
     slot_usage:
       identifier:
         required: true
@@ -70,7 +71,32 @@ slots:
     exact_mappings:
       - schema:gender
 
+  diagnosis:
+    description: Disease diagnosis as a SNOMED CT concept
+    range: string           # typically CURIE or IRI, e.g. sct:123456
+    values_from:
+      - ClinicalFinding_SCT      # reference to a “dynamic” value set
+    annotations:
+      code_system:
+        tag: code_system
+        value: "http://snomed.info/sct"
+
 enums:
+  ClinicalFinding_SCT:
+    description: >
+      Any SNOMED CT concept that is a descendant-or-self of
+      76069003 |Bone disease (disorder)|.
+    enum_uri: sct:76069003
+
+    # This is where you embed the ECL
+    annotations:
+      ecl:
+        tag: ecl
+        value: "<< 76069003"
+      code_system:
+        tag: code_system
+        value: "http://snomed.info/sct"
+
   erdera:AdministrativeGender:
     description: Administrative gender values, aligned with HL7/FHIR
     enum_uri: fhir:AdministrativeGender   # URI of the value set itself
