@@ -51,6 +51,7 @@ jobs:
           # gen-json-schema schemas/person.yaml --top-class Person > web/person.schema.json
           # or:
           linkml generate json-schema schemas/person.yaml > web/person.schema.json
+          python tools/fix_jsonschema_root.py
 
       - name: Upload JSON Schema artifact
         uses: actions/upload-artifact@v4
