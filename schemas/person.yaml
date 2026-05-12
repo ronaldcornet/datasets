@@ -32,6 +32,8 @@ classes:
       identifier:
         required: true
         identifier: true
+      last_name:
+        required: true
 
 slots:
   identifier:
